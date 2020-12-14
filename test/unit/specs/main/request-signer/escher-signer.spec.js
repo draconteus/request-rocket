@@ -7,7 +7,8 @@ describe('EscherSigner', () => {
       const signer = new EscherSigner({
         key: 'some_key',
         secret: '53cr3t',
-        credentialScope: 'a/b/c'
+        credentialScope: 'a/b/c',
+        vendor: 'VENDOR'
       });
 
       const request = { method: 'GET', url: 'http://some.url', headers: {} };
@@ -21,7 +22,8 @@ describe('EscherSigner', () => {
       const signer = new EscherSigner({
         key: 'some_key',
         secret: '53cr3t',
-        credentialScope: 'a/b/c'
+        credentialScope: 'a/b/c',
+        vendor: 'VENDOR'
       });
 
       const request = { method: 'GET', url: 'https://some.url:443', headers: {} };
@@ -34,7 +36,8 @@ describe('EscherSigner', () => {
       const signer = new EscherSigner({
         key: 'some_key',
         secret: '53cr3t',
-        credentialScope: 'a/b/c'
+        credentialScope: 'a/b/c',
+        vendor: 'VENDOR'
       });
 
       const request = { method: 'GET', url: 'https://some.url:443', headers: { host: 'alma.fa' } };
@@ -72,7 +75,8 @@ describe('EscherSigner', () => {
       const signer = new EscherSigner({
         key: authParams.accessKeyId,
         secret: authParams.apiSecret,
-        credentialScope: authParams.credentialScope
+        credentialScope: authParams.credentialScope,
+        vendor: authParams.vendorKey
       });
 
       const signedRequest = signer.signRequest(request);
@@ -120,7 +124,8 @@ describe('EscherSigner', () => {
       const signer = new EscherSigner({
         key: authParams.accessKeyId,
         secret: authParams.apiSecret,
-        credentialScope: authParams.credentialScope
+        credentialScope: authParams.credentialScope,
+        vendor: authParams.vendorKey
       });
 
       const signedRequest = signer.signRequest(request);
@@ -169,7 +174,8 @@ describe('EscherSigner', () => {
         const signer = new EscherSigner({
           key: authParams.accessKeyId,
           secret: authParams.apiSecret,
-          credentialScope: authParams.credentialScope
+          credentialScope: authParams.credentialScope,
+          vendor: authParams.vendorKey
         });
 
         const signedRequest = signer.signRequest(request);

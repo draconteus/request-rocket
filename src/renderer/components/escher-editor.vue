@@ -3,6 +3,22 @@
     <div class="e-grid e-grid-medium">
       <div class="e-cell e-cell-medium e-cell-2">
         <label
+          for="escher-vendor"
+          class="e-field__label e-field__label-inline">Vendor</label>
+      </div>
+      <div class="e-cell e-cell-medium e-cell-auto">
+        <input
+          id="escher-vendor"
+          v-model="vendor"
+          class="e-input"
+          type="text"
+          placeholder="Vendor"
+          @input="setAuthParams()">
+      </div>
+    </div>
+    <div class="e-grid e-grid-medium">
+      <div class="e-cell e-cell-medium e-cell-2">
+        <label
           for="escher-key"
           class="e-field__label e-field__label-inline">Key</label>
       </div>
@@ -58,6 +74,7 @@ export default {
   name: 'EscherEditor',
   data() {
     return {
+      vendor: 'EMS',
       key: null,
       secret: null,
       credentialScope: null
@@ -66,6 +83,7 @@ export default {
   methods: {
     setAuthParams() {
       const authParams = {
+        vendor: this.vendor,
         key: this.key,
         secret: this.secret,
         credentialScope: this.credentialScope

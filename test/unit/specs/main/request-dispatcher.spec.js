@@ -50,7 +50,8 @@ describe('RequestDispatcher', () => {
       [Auth.ESCHER]: {
         key: 'some_key',
         secret: '53cr3t',
-        credentialScope: 'a/b/c'
+        credentialScope: 'a/b/c',
+        vendor: 'EMS'
       }
     };
 

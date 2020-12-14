@@ -24,7 +24,12 @@ describe('RequestSignerFactory', () => {
 
     context('when Escher auth is used', () => {
       it('should instantiate an Escher signer', () => {
-        const signer = RequestSignerFactory.create(Auth.ESCHER, { key: '', secret: '', credentialScope: '' });
+        const signer = RequestSignerFactory.create(Auth.ESCHER, {
+          vendor: 'EMS',
+          key: '',
+          secret: '',
+          credentialScope: ''
+        });
 
         expect(signer).to.be.an.instanceof(EscherSigner);
       });

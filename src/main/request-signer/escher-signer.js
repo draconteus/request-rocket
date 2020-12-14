@@ -59,13 +59,13 @@ function transformEscherRequestToRequestFormat(escherRequest, originalUrl) {
   return clonedRequest;
 }
 
-function createEscherConfig(keyId, secret, credentialScope) {
+function createEscherConfig(keyId, secret, credentialScope, vendor) {
   return {
-    vendorKey: 'EMS',
-    algoPrefix: 'EMS',
+    vendorKey: vendor,
+    algoPrefix: vendor,
     hashAlgo: 'SHA256',
-    authHeaderName: 'X-EMS-Auth',
-    dateHeaderName: 'X-EMS-Date',
+    authHeaderName: `X-${vendor}-Auth`,
+    dateHeaderName: `X-${vendor}-Date`,
     accessKeyId: keyId,
     apiSecret: secret,
     credentialScope
@@ -73,8 +73,8 @@ function createEscherConfig(keyId, secret, credentialScope) {
 }
 
 export default class EscherSigner {
-  constructor({ key, secret, credentialScope }) {
-    this.escher = new Escher(createEscherConfig(key, secret, credentialScope));
+  constructor({ key, secret, credentialScope, vendor }) {
+    this.escher = new Escher(createEscherConfig(key, secret, credentialScope, vendor));
   }
 
   signRequest(request) {

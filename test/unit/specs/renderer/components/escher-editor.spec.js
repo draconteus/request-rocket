@@ -11,13 +11,18 @@ describe('EscherEditor.vue', () => {
     component = shallowMount(EscherEditor, { store });
   });
 
-  it('should render inputs for key, secret and credential scope', () => {
+  it('should render inputs for vendor, key, secret and credential scope', () => {
+    expect(component.find('#escher-vendor').exists()).to.eql(true);
     expect(component.find('#escher-key').exists()).to.eql(true);
     expect(component.find('#escher-secret').exists()).to.eql(true);
     expect(component.find('#credential-scope').exists()).to.eql(true);
   });
 
   it('should set the credentials on the store', () => {
+    const vendor = component.find('#escher-vendor');
+    vendor.element.value = 'some_vendor_name';
+    vendor.trigger('input');
+
     const key = component.find('#escher-key');
     key.element.value = 'some_key_name';
     key.trigger('input');
@@ -31,6 +36,7 @@ describe('EscherEditor.vue', () => {
     credentialScope.trigger('input');
 
     expect(store.state.auth.params).to.eql({
+      vendor: 'some_vendor_name',
       key: 'some_key_name',
       secret: 'v3ry53cr3t',
       credentialScope: 'some/credential/scope'
